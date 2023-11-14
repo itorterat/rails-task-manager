@@ -1,9 +1,21 @@
-<h1>SPECIFIC TASK</h1>
+<div class="align-items-center d-flex justify-content-between mb-5">
+  <h1><%= @task.title %></h1>
+  <%= link_to edit_task_path, class: "btn btn-outline-dark text-align-center" do %>
+    <i class="fa-solid fa-pen-to-square"></i> Edit this task
+  <% end %>
+</div>
 
-<p><%= @task.title %></p>
-<p><%= @task.details %></p>
-<p><%= @task.completed %></p>
+<div class="alert alert-secondary p-4">
+  <%= @task.details %>
+</div>
 
-<%= link_to "> Edit this task <", edit_task_path %>
+<div class="mb-3">
+  <i class="fa-regular fa-square<%= @task.completed ? '-check' : '' %>"></i>
+  <label>
+    <%= @task.completed ? 'Task has been completed' : 'Task has not been completed yet' %>
+  </label>
+</div>
 
-<%= link_to "< All tasks <", tasks_path %>
+<%= link_to tasks_path, class: "text-decoration-none" do %>
+  <i class="fa-solid fa-rotate-left"></i> Return to all tasks
+<% end %>

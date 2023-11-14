@@ -1,15 +1,18 @@
-<h1>INDEX</h1>
+<h1>My tasks</h1>
 
-<ul>
+<ul class="list-group my-5">
   <% @tasks.each do |t| %>
-    <li>
-      <%= link_to t.title, task_path(t) %>
-      <%= link_to "Delete",
-        task_path(t),
-        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-      %>
+    <li class="list-group-item">
+      <i class="fa-regular fa-square<%= t.completed ? '-check' : '' %>"></i>
+      <%= link_to t.title, task_path(t), class: 'ms-2 text-black' %>
+       -
+      <%= link_to task_path(t), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+        <i class="fa-solid fa-trash text-black"></i>
+      <% end %>
     </li>
   <% end %>
 </ul>
 
-<%= link_to '+ Add a new task +', new_task_path %>
+<%= link_to new_task_path, class: "text-decoration-none" do %>
+  <i class="fa-solid fa-circle-plus"></i> Add a new task
+<% end %>
